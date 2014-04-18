@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= content_for?(:title) ? yield(:title)+" | Futon Palace" : "Futon Palace" %></title>
+  <title><%= content_for?(:title) ? yield(:title)+" | X-Files" : "X-Files" %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -10,14 +10,12 @@
  <div class="container" id="main">
     <div class="navbar navbar-default navbar-fixed-top">
     <%= link_to "Home", root_url, class: "navbar-brand pull-left" %>
-    <div class="navbar-text">
-      <center>
-        <%= flash[:notice] %>
-        <%= flash[:alert] %>
-      </center>
-    </div>
+    <% if can? :create, Document %>
+      <%= link_to "Add Document", new_document_path, class: "navbar-text pull-left" %>
+    <% end %>
+
+
     <% if user_signed_in? %>
-      <%= link_to "Add Listing", new_property_path, class: "navbar-text pull-right btn-xs btn-warning" %>
       <%= link_to "Log Out", destroy_user_session_path, method: "delete", class: "navbar-text pull-right" %>
       <div class="navbar-text pull-right">
         Logged in as &nbsp; <%= link_to current_user.name, user_path(current_user), id: "white" %>
@@ -27,7 +25,9 @@
       <%= link_to "Log In", new_user_session_path, class: "navbar-text pull-right" %>
     <% end %>
   </div>
-
+     <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%- end -%>
 
 <%= yield %>
 

@@ -1,7 +1,7 @@
 XFiles::Application.routes.draw do
-  root to: "devise/registrations#new"
+  root to: "documents#index"
   devise_for :users
   resources :users
   resources :roles
-  resources :files
+  resources :documents
 end

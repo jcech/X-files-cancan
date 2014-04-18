@@ -12,7 +12,7 @@ gem 'jquery-turbolinks'
 gem 'paperclip', '~> 4.1'
 gem 'devise'
 gem 'textacular'
-
+gem 'cancancan', '~> 1.7'
 
 group :development do
   gem 'better_errors'
