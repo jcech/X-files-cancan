@@ -7,11 +7,10 @@ class Ability
       cannot :all, Document
     elsif user.roles.first.security_access == 1
       can :create, Document
-      cannot :read, Document, :security_level == 2
+      can :read, Document, :security_level == 1
       can :update, Document, :user_id == user.id
     elsif user.roles.first.security_access == 2
       can :manage, :all
-
     end
     # The third argument is an optional hash of conditions to further filter the
     # objects.

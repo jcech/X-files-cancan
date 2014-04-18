@@ -1,7 +1,8 @@
 class DocumentsController < ApplicationController
 
   def index
-    @documents = Document.all
+    @all_documents = Document.all
+    @documents = @all_documents.find_all { |doc| doc.security_level <= current_user.roles.first.security_access.to_s }
   end
 
   def show
