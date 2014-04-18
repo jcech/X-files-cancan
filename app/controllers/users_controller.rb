@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all.reject { |x| x == current_user }
+
+  end
+
   def new
     @user = User.new
   end
@@ -18,6 +23,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @assignment = Assignment.new
   end
 
 private

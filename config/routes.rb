@@ -4,4 +4,5 @@ XFiles::Application.routes.draw do
   resources :users
   resources :roles
   resources :documents
+  resources :assignments
 end

@@ -6,3 +6,11 @@
 <% end %><br />
 <h3>Published Documents:</h3>
 <%= render @user.documents %>
+<br />
+<% if can? :manage, :all %>
+  <h3>Director Controls:</h3>
+  <%= form_for @assignment do |f| %>
+    <%= f.collection_select :role_id, Role.all.reject { |x| x.name == current_user.roles.first.name }, :id, :name %>
+    <%= f.submit "Update Security Access", class: "btn btn-default" %>
+  <% end %>
+<% end %>

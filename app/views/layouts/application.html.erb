@@ -14,6 +14,9 @@
       <% if can? :create, Document %>
         <%= link_to "Add Document", new_document_path, class: "navbar-text pull-left" %>
       <% end %>
+      <% if can? :manage, :all %>
+        <%= link_to "Subordinate list", users_path, class: "navbar-text pull-left" %>
+      <% end %>
     <% end %>
 
 
