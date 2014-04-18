@@ -15,9 +15,11 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = Document.find(params[:id])
+    authorize! :edit, @document
   end
 
   def update
+    authorize! :update, @document
     @document = Document.find(params[:id])
     if params[:document]
       @document.update(documents_params)
@@ -27,6 +29,7 @@ class DocumentsController < ApplicationController
 
   def create
     @document = Document.new(documents_params)
+    authorize! :create, @document
     if @document.save
       flash[:notice] = "Document created!"
       redirect_to root_path
@@ -37,8 +40,10 @@ class DocumentsController < ApplicationController
 
   def destroy
     @document = Document.find(params[:id])
+    authorize! :destroy, @document
     @document.destroy
     redirect_to(root_path)
+
   end
 
 private
