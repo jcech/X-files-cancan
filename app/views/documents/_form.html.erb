@@ -7,6 +7,10 @@
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.text_area :body, cols: 60, rows: 10, placeholder: "Body" %>
   </div>
-    <%= f.submit "Create Document", class: "btn btn-success" %>
+  <div class='form-group'>
+    <%= f.label :security_level, 'Security Level' %>
+    <%= f.collection_select :security_level, Role.all, :security_access, :name %>
+  </div>
+  <%= f.submit "Create Document", class: "btn btn-success" %>
 
 <% end %>

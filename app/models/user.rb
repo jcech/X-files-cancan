@@ -7,4 +7,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  def user_security
+    roles = Role.all
+    roles.find_all { |x| x.security_access <= user.roles.first.security }
+  end
+
+  def role?
+    self.roles.first.name
+  end
+
 end

@@ -6,6 +6,7 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+    authorize! :read, @document
   end
 
   def new

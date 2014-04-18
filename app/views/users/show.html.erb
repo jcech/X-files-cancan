@@ -1,8 +1,8 @@
 <h1><%= @user.name %></h1>
 
-<% if @user.roles != nil %>
+<% if @user.roles.count > 0 %>
   <h3>Current Assignment: </h3>
-  <h3><%= @user.roles.first.name %></h3>
+  <h3><%= @user.role? %></h3>
 <% end %><br />
 <h3>Published Documents:</h3>
 <%= render @user.documents %>
@@ -10,7 +10,8 @@
 <% if can? :manage, :all %>
   <h3>Director Controls:</h3>
   <%= form_for @assignment do |f| %>
-    <%= f.collection_select :role_id, Role.all.reject { |x| x.name == current_user.roles.first.name }, :id, :name %>
+    <%= f.collection_select :role_id, Role.all.reject { |x| x.name == current_user.role? }, :id, :name %>
+    <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.submit "Update Security Access", class: "btn btn-default" %>
   <% end %>
 <% end %>
