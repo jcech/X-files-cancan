@@ -1,9 +1,10 @@
-##X-files
+X-Files Document Permission 
+============================
 
-* DONE As a user i want to be able to post an article so my boss can see my work.
+This application allows users to post secret documents based and view documents if they have the correct permission. 
 
-* DONE As a user I want to be able to view other documents so I can see what others are working on.
+We wanted to learn more about the permission gems:
+* devise
+* can-can
 
-* DONE As a user I want to be able to put a security clearance on my document so only authorized users can view it.
 
-As a user I want to edit my posted documents so my boss can't see my horrible spelling errors.
